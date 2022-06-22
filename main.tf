@@ -22,7 +22,7 @@ provider "aws" {
 resource "aws_vpc" "my-vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "Testing-VPC"
+    Name = "Terraform-VPC"
   }
 }
 
@@ -34,7 +34,7 @@ resource "aws_subnet" "web-subnet-1" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "1Websub-1a"
+    Name = "Websubter-1a"
   }
 }
 
@@ -45,7 +45,7 @@ resource "aws_subnet" "web-subnet-2" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "1Websub-2b"
+    Name = "Websubter-2b"
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_subnet" "application-subnet-1" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "1Applicationsub-1a"
+    Name = "Applicationsubter-1a"
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_subnet" "application-subnet-2" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "1Applicationsub-2b"
+    Name = "Applicationsubter-2b"
   }
 }
 
@@ -79,7 +79,7 @@ resource "aws_subnet" "database-subnet-1" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "1Databasesub-1a"
+    Name = "Databasesubter-1a"
   }
 }
 
@@ -89,7 +89,7 @@ resource "aws_subnet" "database-subnet-2" {
   availability_zone = "us-east-1b"
 
   tags = {
-    Name = "1Databasesub-2b"
+    Name = "Databasesubter-2b"
   }
 }
 
@@ -100,7 +100,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.my-vpc.id
 
   tags = {
-    Name = "1Test-IGW"
+    Name = "Testter-IGW"
   }
 }
 
@@ -115,7 +115,7 @@ resource "aws_route_table" "web-rt" {
   }
 
   tags = {
-    Name = "1Web-RT"
+    Name = "Webter-RT"
   }
 }
 
@@ -142,7 +142,7 @@ resource "aws_instance" "webserver1" {
   user_data              = file("install_apache.sh")
 
   tags = {
-    Name = "1Web Server 1"
+    Name = "Web Server ter 1"
   }
 
 }
@@ -156,7 +156,7 @@ resource "aws_instance" "webserver2" {
   user_data              = file("install_apache.sh")
 
   tags = {
-    Name = "1Web Server 2"
+    Name = "Web Server ter 2"
   }
 
 }
@@ -185,7 +185,7 @@ resource "aws_security_group" "web-sg" {
   }
 
   tags = {
-    Name = "1Web-SG"
+    Name = "Webter-SG"
   }
 }
 
@@ -211,7 +211,7 @@ resource "aws_security_group" "webserver-sg" {
   }
 
   tags = {
-    Name = "1Webserver-SG"
+    Name = "Webserverter-SG"
   }
 }
 
@@ -237,14 +237,14 @@ resource "aws_security_group" "database-sg" {
   }
 
   tags = {
-    Name = "1Database-SG"
+    Name = "Databaseter-SG"
   }
 }
 
 /* =========================== ELB ===============================*/
 
 resource "aws_lb" "external-elb" {
-  name               = "1External-LB"
+  name               = "Externalter-LB"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.web-sg.id]
@@ -310,7 +310,7 @@ resource "aws_db_subnet_group" "default" {
   subnet_ids = [aws_subnet.database-subnet-1.id, aws_subnet.database-subnet-2.id]
 
   tags = {
-    Name = "My DB subnet group"
+    Name = "My DB subnet group ter"
   }
 }
 
