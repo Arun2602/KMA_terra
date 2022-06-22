@@ -11,6 +11,8 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
+  access_key = "AKIAUZX2TEZGJTBYVDCV"
+  secret_key = "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"
   region = "us-east-1"
 }
 
@@ -20,7 +22,7 @@ provider "aws" {
 resource "aws_vpc" "my-vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "Test-VPC"
+    Name = "Testing-VPC"
   }
 }
 
@@ -32,7 +34,7 @@ resource "aws_subnet" "web-subnet-1" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "Websub-1a"
+    Name = "1Websub-1a"
   }
 }
 
@@ -43,7 +45,7 @@ resource "aws_subnet" "web-subnet-2" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "Websub-2b"
+    Name = "1Websub-2b"
   }
 }
 
@@ -55,7 +57,7 @@ resource "aws_subnet" "application-subnet-1" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "Applicationsub-1a"
+    Name = "1Applicationsub-1a"
   }
 }
 
@@ -66,7 +68,7 @@ resource "aws_subnet" "application-subnet-2" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "Applicationsub-2b"
+    Name = "1Applicationsub-2b"
   }
 }
 
@@ -77,7 +79,7 @@ resource "aws_subnet" "database-subnet-1" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "Databasesub-1a"
+    Name = "1Databasesub-1a"
   }
 }
 
@@ -87,7 +89,7 @@ resource "aws_subnet" "database-subnet-2" {
   availability_zone = "us-east-1b"
 
   tags = {
-    Name = "Databasesub-2b"
+    Name = "1Databasesub-2b"
   }
 }
 
@@ -98,7 +100,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.my-vpc.id
 
   tags = {
-    Name = "Test-IGW"
+    Name = "1Test-IGW"
   }
 }
 
@@ -113,7 +115,7 @@ resource "aws_route_table" "web-rt" {
   }
 
   tags = {
-    Name = "Web-RT"
+    Name = "1Web-RT"
   }
 }
 
@@ -140,7 +142,7 @@ resource "aws_instance" "webserver1" {
   user_data              = file("install_apache.sh")
 
   tags = {
-    Name = "Web Server 1"
+    Name = "1Web Server 1"
   }
 
 }
@@ -154,7 +156,7 @@ resource "aws_instance" "webserver2" {
   user_data              = file("install_apache.sh")
 
   tags = {
-    Name = "Web Server 2"
+    Name = "1Web Server 2"
   }
 
 }
@@ -183,7 +185,7 @@ resource "aws_security_group" "web-sg" {
   }
 
   tags = {
-    Name = "Web-SG"
+    Name = "1Web-SG"
   }
 }
 
@@ -209,7 +211,7 @@ resource "aws_security_group" "webserver-sg" {
   }
 
   tags = {
-    Name = "Webserver-SG"
+    Name = "1Webserver-SG"
   }
 }
 
@@ -235,14 +237,14 @@ resource "aws_security_group" "database-sg" {
   }
 
   tags = {
-    Name = "Database-SG"
+    Name = "1Database-SG"
   }
 }
 
 /* =========================== ELB ===============================*/
 
 resource "aws_lb" "external-elb" {
-  name               = "External-LB"
+  name               = "1External-LB"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.web-sg.id]
@@ -304,7 +306,7 @@ resource "aws_db_instance" "default" {
 }
 
 resource "aws_db_subnet_group" "default" {
-  name       = "main"
+  name       = "1main"
   subnet_ids = [aws_subnet.database-subnet-1.id, aws_subnet.database-subnet-2.id]
 
   tags = {
