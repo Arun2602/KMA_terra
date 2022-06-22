@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'terraform' }
     
     stages {
         stage('terraform init') {
