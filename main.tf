@@ -4,7 +4,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      
     }
   }
 }
@@ -12,8 +12,6 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
-  access_key = "AKIAUZX2TEZGJTBYVDCV"
-  secret_key = "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"
 }
 
 /* ==================== VPC ============================= */
