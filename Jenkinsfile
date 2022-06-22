@@ -15,7 +15,7 @@ pipeline {
         
         stage('terraform apply') {
             steps {
-                sh label: 'terraform', script: 'terraform apply -input=false'
+                sh label: 'terraform', script: 'terraform apply'
             }
         }
     }
