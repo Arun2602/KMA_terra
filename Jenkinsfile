@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('terraform init') {
             steps {
-                sh './terraform init'
+                sh label: ", script: 'terraform init'
             }
         }
         
         stage('terraform apply') {
             steps {
-                sh './terraform apply -auto-approve'
+                sh label: ", script: 'terraform apply --auto-approve'
             }
         }
     }
